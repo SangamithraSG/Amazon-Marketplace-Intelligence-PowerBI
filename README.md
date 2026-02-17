@@ -1,5 +1,5 @@
 Amazon Marketplace Intelligence – Pricing, Performance & Seller Analytics
-#Table of Contents
+# Table of Contents
 
 Case Study
 
