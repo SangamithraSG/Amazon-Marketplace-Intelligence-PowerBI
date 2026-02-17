@@ -19,7 +19,7 @@ Key Takeaways
 
 About the Project
 
-#Case Study
+# Case Study
 
 This project analyzes Amazon marketplace data to uncover insights into:
 
@@ -81,7 +81,7 @@ Month
 
 Year
 
-#Data Modeling
+# Data Modeling
 
 A star schema model was implemented:
 
@@ -97,7 +97,7 @@ Dim_Date
 
 Relationships were established using primary and foreign keys to ensure clean filtering and accurate aggregations.
 
-#Data Cleaning & Transformation
+# Data Cleaning & Transformation
 
 Key steps performed in Power Query:
 
@@ -111,7 +111,7 @@ Validated pricing logic (List Price > Price)
 
 Created date hierarchy for time analysis
 
-#DAX Calculations
+# DAX Calculations
 - Discount %
 Discount % =
 DIVIDE(
@@ -126,11 +126,11 @@ DIVIDE(
     COUNTROWS(Fact_Sales)
 )
 
-#Seller Price Positioning Index
+# Seller Price Positioning Index
 
 Measures how aggressively a seller prices relative to overall market average.
 
-#Business Analysis & Insights
+# Business Analysis & Insights
 -Revenue Insights
 
 Total Revenue generated: 4.7B+
@@ -139,7 +139,7 @@ A small percentage of products contribute disproportionately to total revenue.
 
 Bestseller products show stronger revenue concentration.
 
-#Pricing & Discount Analysis
+# Pricing & Discount Analysis
 
 Most products fall within the low-to-mid price range.
 
@@ -147,7 +147,7 @@ Higher discounts do not always guarantee higher unit sales.
 
 Extreme discounts show diminishing returns in revenue.
 
-#Ratings vs Price
+# Ratings vs Price
 
 Majority of products cluster around 4+ ratings.
 
@@ -155,7 +155,7 @@ No strong linear relationship between high price and high rating.
 
 Mid-priced products dominate high-rating segments.
 
-#Seller Insights
+# Seller Insights
 
 Regular sellers dominate total revenue (~90%+ share).
 
@@ -163,7 +163,7 @@ Bestsellers show stronger unit efficiency.
 
 Seller pricing index reveals aggressive vs conservative pricing strategies.
 
-#Category Insights
+# Category Insights
 
 Certain categories dominate in revenue generation.
 
@@ -171,7 +171,7 @@ Discount dependency varies significantly across categories.
 
 Revenue distribution is highly skewed across product segments.
 
-#Dashboard Overview
+# Dashboard Overview
 - Page 1 – Executive Performance Dashboard
 
 KPI Cards (Revenue, Units Sold, Reviews, Bestseller %, Avg Rating)
@@ -196,7 +196,7 @@ Seller Price Positioning Index
 
 Interactive slicers for dynamic filtering
 
-#Key Takeaways
+# Key Takeaways
 
 Pricing alone does not define performance — rating and positioning matter.
 
@@ -206,7 +206,7 @@ Bestseller flag strongly correlates with sales velocity.
 
 Revenue is highly concentrated among specific product segments.
 
-#Tools Used
+# Tools Used
 
 Power BI
 
