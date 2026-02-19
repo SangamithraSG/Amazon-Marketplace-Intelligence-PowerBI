@@ -1,5 +1,5 @@
-Amazon Marketplace Intelligence Dashboard
-Table of Contents
+# Amazon Marketplace Intelligence Dashboard
+$ Table of Contents
 
 Case Study
 
@@ -21,7 +21,7 @@ Dashboard Overview
 
 Tools Used
 
-Case Study
+# Case Study
 
 This project analyzes Amazon marketplace product performance to uncover insights related to revenue, pricing strategy, customer satisfaction, and competitive positioning.
 
@@ -39,7 +39,7 @@ Support data-driven pricing and competitive strategy decisions
 
 This dashboard is designed for business stakeholders, sellers, and analysts to evaluate marketplace performance and strategic positioning.
 
-Dataset Description
+# Dataset Description
 
 The dataset consists of transactional and dimensional data structured in a star schema format.
 
@@ -64,7 +64,7 @@ ReviewCount – Number of reviews
 
 isBestSeller – Bestseller indicator
 
-Dimension Tables
+# Dimension Tables
 Dim_Product
 
 Product_id
@@ -93,7 +93,7 @@ CategoryID
 
 category_name
 
-Data Model
+# Data Model
 
 The dataset follows a Star Schema Model:
 
@@ -109,7 +109,7 @@ Dim_Category
 
 This structure ensures optimized aggregation and performance in Power BI.
 
-Data Cleaning & Transformations
+# Data Cleaning & Transformations
 
 The following transformations were applied:
 
@@ -131,7 +131,7 @@ Created price bins for distribution analysis
 
 Built measures for dynamic aggregation
 
-Calculated Measures
+# Calculated Measures
 Discount %
 Discount % = 
 DIVIDE(
@@ -171,7 +171,7 @@ Medium (3.5 – 4.2)
 
 Low (Below 3.5)
 
-Performance Insights
+# Performance Insights
 Revenue & Sales Analysis
 
 Identified top-performing seller by revenue
@@ -182,7 +182,7 @@ Monthly revenue trend analysis
 
 Bestseller percentage comparison across sellers
 
-Pricing & Competitive Insights
+# Pricing & Competitive Insights
 Price vs Rating Analysis
 
 Correlation between price and customer rating
@@ -203,7 +203,7 @@ Seller 1 positioned below market average (Price Index < 1)
 
 Seller 2 positioned at market level (Price Index ≈ 1)
 
-Competitive Intelligence Analysis
+# Competitive Intelligence Analysis
 Seller Comparison Table
 
 Compares sellers across:
@@ -258,7 +258,7 @@ Low Rating + Low Price → Improvement Needed
 
 Low Rating + High Price → Risk Zone
 
-Dashboard Overview
+# Dashboard Overview
 
 The dashboard consists of 4 pages:
 
@@ -294,7 +294,7 @@ Opportunity Quadrant
 
 Pricing vs Rating Benchmarking
 
-Tools Used
+# Tools Used
 
 Power BI
 
