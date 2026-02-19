@@ -1,93 +1,103 @@
-Amazon Marketplace Intelligence – Pricing, Performance & Seller Analytics
-# Table of Contents
+Amazon Marketplace Intelligence Dashboard
+Table of Contents
 
 Case Study
 
 Dataset Description
 
-Data Modeling
+Data Model
 
-Data Cleaning & Transformation
+Data Cleaning & Transformations
 
-DAX Calculations
+Calculated Measures
 
-Business Analysis & Insights
+Performance Insights
+
+Pricing & Competitive Insights
+
+Competitive Intelligence Analysis
 
 Dashboard Overview
 
-Key Takeaways
+Tools Used
 
-About the Project
+Case Study
 
-# Case Study
+This project analyzes Amazon marketplace product performance to uncover insights related to revenue, pricing strategy, customer satisfaction, and competitive positioning.
 
-This project analyzes Amazon marketplace data to uncover insights into:
+The objective of this analysis is to:
 
-Product pricing strategies
+Identify top-performing sellers
 
-Discount effectiveness
+Understand pricing impact on ratings and revenue
 
-Seller performance
+Benchmark category performance
 
-Revenue contribution
+Detect high-opportunity market segments
 
-Customer behavior patterns
+Support data-driven pricing and competitive strategy decisions
 
-The goal is to understand how pricing, discounts, ratings, and seller types impact revenue and sales performance.
+This dashboard is designed for business stakeholders, sellers, and analysts to evaluate marketplace performance and strategic positioning.
 
-This dashboard is designed to simulate a real-world business intelligence scenario where stakeholders need actionable insights for strategic decision-making.
+Dataset Description
 
-#Dataset Description
+The dataset consists of transactional and dimensional data structured in a star schema format.
 
-The dataset consists of marketplace product-level data including:
+Fact Table
+Fact_Sales
 
--Product Information
+Product_id – Unique product identifier
 
-Product_ID – Unique identifier
+SellerID – Unique seller identifier
 
-Category
+Revenue – Total revenue generated
 
-Price
+UnitSold – Total units sold
 
-List Price
+price – Selling price
 
-Discount %
+listPrice – Original list price
 
-Rating
+Rating – Customer rating
 
-Review Count
+ReviewCount – Number of reviews
 
--Sales Information
+isBestSeller – Bestseller indicator
 
-Units Sold
+Dimension Tables
+Dim_Product
 
-Total Revenue
+Product_id
 
-Estimated Monthly Revenue
+category_name
 
-Bestseller Flag
+Product hierarchy
 
--Seller Information
+Dim_Seller
 
-Seller_ID
+SellerID
 
-Seller Type (Regular / Bestseller)
+Seller attributes
 
--Date Information
+Dim_Date
 
-Generated Date
-
-Month
+Date
 
 Year
 
-# Data Modeling
+Month
 
-A star schema model was implemented:
+Dim_Category
 
-Fact Table: Fact_Sales
+CategoryID
 
-Dimension Tables:
+category_name
+
+Data Model
+
+The dataset follows a Star Schema Model:
+
+Fact_Sales connected to:
 
 Dim_Product
 
@@ -95,125 +105,203 @@ Dim_Seller
 
 Dim_Date
 
-Relationships were established using primary and foreign keys to ensure clean filtering and accurate aggregations.
+Dim_Category
 
-# Data Cleaning & Transformation
+This structure ensures optimized aggregation and performance in Power BI.
 
-Key steps performed in Power Query:
+Data Cleaning & Transformations
 
-Removed null and duplicate values
+The following transformations were applied:
 
-Standardized column naming
+Removed null values and duplicates
 
-Created calculated Discount % column
+Standardized column names
 
-Validated pricing logic (List Price > Price)
+Created calculated columns for:
 
-Created date hierarchy for time analysis
+Discount %
 
-# DAX Calculations
-- Discount %
-Discount % =
+Price Index
+
+Revenue Rank
+
+Rating Band
+
+Created price bins for distribution analysis
+
+Built measures for dynamic aggregation
+
+Calculated Measures
+Discount %
+Discount % = 
 DIVIDE(
-    Fact_Sales[listPrice] - Fact_Sales[price],
-    Fact_Sales[listPrice]
+    SUM(Fact_Sales[listPrice]) - SUM(Fact_Sales[price]),
+    SUM(Fact_Sales[listPrice])
 )
 
-- Bestseller %
-Bestseller % =
+Price Index
+
+Measures seller pricing position relative to market average.
+
+Price Index =
 DIVIDE(
-    CALCULATE(COUNTROWS(Fact_Sales), Fact_Sales[isBestSeller] = TRUE()),
-    COUNTROWS(Fact_Sales)
+    [Avg Price],
+    CALCULATE([Avg Price], ALL(Dim_Seller))
 )
 
-# Seller Price Positioning Index
+Revenue Rank
 
-Measures how aggressively a seller prices relative to overall market average.
+Ranks sellers based on total revenue.
 
-# Business Analysis & Insights
--Revenue Insights
+Revenue Rank =
+RANKX(
+    ALL(Dim_Seller[SellerID]),
+    [Total Revenue],
+    ,
+    DESC
+)
 
-Total Revenue generated: 4.7B+
+Rating Band
 
-A small percentage of products contribute disproportionately to total revenue.
+Classifies ratings into performance categories:
 
-Bestseller products show stronger revenue concentration.
+High (4.2+)
 
-# Pricing & Discount Analysis
+Medium (3.5 – 4.2)
 
-Most products fall within the low-to-mid price range.
+Low (Below 3.5)
 
-Higher discounts do not always guarantee higher unit sales.
+Performance Insights
+Revenue & Sales Analysis
 
-Extreme discounts show diminishing returns in revenue.
+Identified top-performing seller by revenue
 
-# Ratings vs Price
+Analyzed revenue distribution by category
 
-Majority of products cluster around 4+ ratings.
+Monthly revenue trend analysis
 
-No strong linear relationship between high price and high rating.
+Bestseller percentage comparison across sellers
 
-Mid-priced products dominate high-rating segments.
+Pricing & Competitive Insights
+Price vs Rating Analysis
 
-# Seller Insights
+Correlation between price and customer rating
 
-Regular sellers dominate total revenue (~90%+ share).
+Bubble size represents total revenue
 
-Bestsellers show stronger unit efficiency.
+Identified premium and budget segments
 
-Seller pricing index reveals aggressive vs conservative pricing strategies.
+Price Distribution
 
-# Category Insights
+Most products fall within low-to-mid price range
 
-Certain categories dominate in revenue generation.
+High-priced products contribute lower volume but higher margins
 
-Discount dependency varies significantly across categories.
+Seller Price Positioning
 
-Revenue distribution is highly skewed across product segments.
+Seller 1 positioned below market average (Price Index < 1)
 
-# Dashboard Overview
-- Page 1 – Executive Performance Dashboard
+Seller 2 positioned at market level (Price Index ≈ 1)
 
-KPI Cards (Revenue, Units Sold, Reviews, Bestseller %, Avg Rating)
+Competitive Intelligence Analysis
+Seller Comparison Table
+
+Compares sellers across:
+
+Total Revenue
+
+Units Sold
+
+Average Price
+
+Rating
+
+Bestseller %
+
+Price Index
+
+Category Performance Benchmarking
+
+Categories analyzed across:
+
+Revenue
+
+Units Sold
+
+Rating Distribution
+
+Pricing Position
+
+Top performing categories identified based on:
+
+High revenue + high rating
+
+Strong bestseller presence
+
+Revenue vs Rating Heatmap
+
+Visual representation of:
+
+Price (X-axis)
+
+Rating (Y-axis)
+
+Revenue (Bubble size)
+
+Quadrants created using average price and average rating:
+
+High Rating + Low Price → High Opportunity
+
+High Rating + High Price → Premium Segment
+
+Low Rating + Low Price → Improvement Needed
+
+Low Rating + High Price → Risk Zone
+
+Dashboard Overview
+
+The dashboard consists of 4 pages:
+
+Page 1 – Executive Performance Overview
+
+KPI Cards
 
 Revenue by Category
 
 Monthly Revenue Trend
 
-Revenue by Seller Type
+Seller Revenue Split
 
-Clean executive layout for stakeholders
+Page 2 – Pricing & Performance Analysis
 
-- Page 2 – Pricing & Performance Analysis
-
-Price vs Rating Scatter Plot
-
-Discount vs Units Sold Bubble Analysis
+Price vs Rating Scatter
 
 Price Distribution Histogram
 
-Seller Price Positioning Index
+Seller Price Index
 
-Interactive slicers for dynamic filtering
+Page 3 – Competitive Intelligence
 
-# Key Takeaways
+Seller Comparison Table
 
-Pricing alone does not define performance — rating and positioning matter.
+Category Benchmarking
 
-Discount strategy must be optimized per category.
+Revenue Heatmap
 
-Bestseller flag strongly correlates with sales velocity.
+Page 4 – Market Positioning Analysis
 
-Revenue is highly concentrated among specific product segments.
+Opportunity Quadrant
 
-# Tools Used
+Pricing vs Rating Benchmarking
+
+Tools Used
 
 Power BI
-
-Power Query
 
 DAX
 
 Data Modeling (Star Schema)
 
 Git & GitHub
+
+Excel (Data preparation)
